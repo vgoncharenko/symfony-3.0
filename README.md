@@ -66,3 +66,16 @@ Enjoy!
 [10]: https://symfony.com/doc/3.0/cookbook/email.html
 [11]: https://symfony.com/doc/3.0/cookbook/logging/monolog.html
 [13]: https://symfony.com/doc/3.0/bundles/SensioGeneratorBundle/index.html
+
+Import from DB to XML:
+php bin/console doctrine:mapping:import --force AcmeBlogBundle xml
+
+Create PHP entities from XML:
+php bin/console doctrine:mapping:convert annotation ./src
+
+Generate Get-ers and Set-ers:
+php bin/console doctrine:generate:entities AcmeBlogBundle
+
+How to Use the Serializer
+http://thomas.jarrand.fr/blog/serialization/
+http://symfony.com/doc/current/cookbook/serializer.html
