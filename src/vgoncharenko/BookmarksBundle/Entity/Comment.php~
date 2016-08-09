@@ -1,0 +1,64 @@
+<?php
+
+namespace vgoncharenko\BookmarksBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Comment
+ *
+ * @ORM\Table(name="comment", uniqueConstraints={@ORM\UniqueConstraint(name="unique_uid", columns={"uid"})})
+ * @ORM\Entity
+ */
+class Comment
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ip", type="string", length=50, nullable=false)
+     */
+    private $ip;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="string", length=500, nullable=false)
+     */
+    private $text;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="bookmark_uid", type="integer", nullable=false)
+     */
+    private $bookmarkUid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="uid", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $uid;
+
+    /**
+     * @var \vgoncharenko\BookmarksBundle\Entity\Bookmark
+     *
+     * @ORM\ManyToOne(targetEntity="vgoncharenko\BookmarksBundle\Entity\Bookmark", inversedBy="comment", fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="bookmark_uid", referencedColumnName="uid")
+     * })
+     */
+    private $bookmark;
+
+
+}
+

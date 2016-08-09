@@ -1,0 +1,4 @@
+services:
+#    vgoncharenko_bookmarks.example:
+#        class: vgoncharenko\BookmarksBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

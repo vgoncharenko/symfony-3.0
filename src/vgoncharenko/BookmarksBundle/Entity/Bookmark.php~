@@ -1,0 +1,54 @@
+<?php
+
+namespace vgoncharenko\BookmarksBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Bookmark
+ *
+ * @ORM\Table(name="bookmark", uniqueConstraints={@ORM\UniqueConstraint(name="unique_uid", columns={"uid"})})
+ * @ORM\Entity
+ */
+class Bookmark
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255, nullable=false)
+     */
+    private $url;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="uid", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $uid;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="vgoncharenko\BookmarksBundle\Entity\Comment", mappedBy="bookmark")
+     */
+    private $comment;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comment = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+
